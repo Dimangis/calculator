@@ -46,15 +46,28 @@ export const handleEngineerButtonClick = (setValue) => (e) => {
   setValue((prev) => {
     switch (value) {
       case "π":
+        // Проверяем, содержит ли предыдущая строка число PI и предотвращаем повторный ввод
+        if (prev.includes(Math.PI.toString())) {
+          return prev;
+        }
         return prev + Math.PI;
-      // Добавить обработчики для других инженерных функций
+      case "√":
+        return `sqrt(${prev})`;
+      case "ln":
+        return `log(${prev})`;
+      // Можно добавить обработчики для других инженерных функций
+      case "sin":
+      case "cos":
+      case "tan":
+      case "exp":
+        return `${value}(${prev})`;
       default:
         return prev;
     }
   });
 };
 
-// Обработчик для кнопок с инженерными операциями
+// Обработчик для возведения в степень
 export const handleEngineerGrade = (setValue) => (e) => {
   const func = e.target.value;
   setValue((prev) => {
@@ -64,8 +77,4 @@ export const handleEngineerGrade = (setValue) => (e) => {
     }
     return prev + func;
   });
-};
-
-export const handleEngineerLn = (setValue) => (e) => {
-  setValue((prevValue) => `log(${prevValue})`);
 };

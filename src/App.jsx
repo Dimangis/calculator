@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { buttonGroups, createEngineerButtonGroups } from "./data";
 import {
   handleSet,
@@ -8,7 +8,6 @@ import {
   toggleEngineerMode,
   handleEngineerButtonClick,
   handleEngineerGrade,
-  handleEngineerLn,
 } from "./handlers";
 
 import "./App.css";
@@ -42,8 +41,7 @@ function App() {
   );
   const engineerButtons = createEngineerButtonGroups(
     handleEngineerButtonClick(setValue),
-    handleEngineerGrade(setValue),
-    handleEngineerLn(setValue)
+    handleEngineerGrade(setValue)
   );
 
   // Обработчик для ручного ввода в поле input
@@ -53,6 +51,23 @@ function App() {
     const sanitizedValue = inputValue.replace(/([+\-*/^.]){2,}/g, "$1");
     setValue(sanitizedValue);
   };
+
+  // Обработчик для нажатия клавиши "="
+  const handleKeyPress = (e) => {
+    if (e.key === "=" || e.key === "Enter") {
+      e.preventDefault(); // Предотвращаем стандартное поведение клавиши Enter
+      handleEvaluate(setValue, value)();
+    }
+  };
+
+  // Добавляем обработчик нажатия клавиш
+  useEffect(() => {
+    document.addEventListener("keypress", handleKeyPress);
+    return () => {
+      document.removeEventListener("keypress", handleKeyPress);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   return (
     <div className="container">

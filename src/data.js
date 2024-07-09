@@ -44,18 +44,17 @@ export const buttonGroups = (
 // Функция для создания групп кнопок инженерного режима
 export const createEngineerButtonGroups = (
   handleEngineerSet,
-  handleEngineerGrade,
-  handleEngineerLn
+  handleEngineerGrade
 ) => [
   [
     createButton("sin", handleEngineerSet),
     createButton("cos", handleEngineerSet),
     createButton("tan", handleEngineerSet),
-    createButton("sqrt", handleEngineerSet),
+    createButton("√", handleEngineerSet),
   ],
   [
     createButton("π", handleEngineerSet),
-    createButton("ln", handleEngineerLn),
+    createButton("ln", handleEngineerSet),
     createButton("exp", handleEngineerSet),
     createButton("^", handleEngineerGrade),
   ],
