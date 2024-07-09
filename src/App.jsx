@@ -53,19 +53,22 @@ function App() {
               ))}
             </div>
           ))}
-          {isEngineerMode &&
-            engineerButtons.map((group, groupIndex) => (
-              <div key={groupIndex}>
-                {group.map((button, buttonIndex) => (
-                  <input
-                    key={buttonIndex}
-                    type="button"
-                    value={button.label}
-                    onClick={button.onClick}
-                  />
-                ))}
-              </div>
-            ))}
+          {isEngineerMode && (
+            <div className="engineer-buttons">
+              {engineerButtons.map((group, groupIndex) => (
+                <div key={groupIndex}>
+                  {group.map((button, buttonIndex) => (
+                    <input
+                      key={buttonIndex}
+                      type="button"
+                      value={button.label}
+                      onClick={button.onClick}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
         </form>
       </div>
     </div>
