@@ -56,7 +56,7 @@ function App() {
   const handleKeyPress = (e) => {
     if (e.key === "=" || e.key === "Enter") {
       e.preventDefault(); // Предотвращаем стандартное поведение клавиши Enter
-      handleEvaluate(setValue, value)();
+      if (value !== "") handleEvaluate(setValue, value)();
     }
   };
 

@@ -28,11 +28,19 @@ export const handleClear = (setValue) => () => {
 export const handleEvaluate = (setValue, value) => () => {
   try {
     const result = evaluate(value);
-    setValue(String(result));
+    setValue(removeTrailingZeros(String(result.toFixed(10))));
   } catch {
     setValue("Error");
   }
 };
+// Удаление лишних нулей в числах с плавающей запятой
+function removeTrailingZeros(str) {
+  const lastNonZeroIndex = Array.from(str).findLastIndex(
+    (char) => char !== "0"
+  );
+  const trimmedStr = str.slice(0, lastNonZeroIndex + 1);
+  return trimmedStr.endsWith(".") ? trimmedStr.slice(0, -1) : trimmedStr;
+}
 
 // Обработчик для переключения инженерного режима
 export const toggleEngineerMode = (setIsEngineerMode) => () => {
