@@ -9,7 +9,7 @@ import {
   handleEngineerButtonClick,
   handleEngineerGrade,
 } from "./handlers";
-
+import "style.css";
 import "./App.css";
 
 function App() {
