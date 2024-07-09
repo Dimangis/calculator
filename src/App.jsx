@@ -8,6 +8,7 @@ import {
   toggleEngineerMode,
   handleEngineerButtonClick,
   handleEngineerGrade,
+  handleEngineerLn,
 } from "./handlers";
 
 import "./App.css";
@@ -16,6 +17,21 @@ function App() {
   const [value, setValue] = useState("");
   const [isEngineerMode, setIsEngineerMode] = useState(false);
 
+  // Функция для вычисления размера шрифта
+  const calculateFontSize = () => {
+    const length = value.length;
+    let fontSize = 40; // Размер шрифта по умолчанию
+
+    if (length > 15) {
+      fontSize = 20;
+    } else if (length > 10) {
+      fontSize = 24;
+    }
+
+    return `${fontSize}px`;
+  };
+
+  // Создание кнопок для базового и инженерного режима
   const buttons = buttonGroups(
     handleSet(setValue),
     handleDelete(setValue),
@@ -24,14 +40,18 @@ function App() {
     toggleEngineerMode(setIsEngineerMode),
     isEngineerMode
   );
-
   const engineerButtons = createEngineerButtonGroups(
     handleEngineerButtonClick(setValue),
-    handleEngineerGrade(setValue)
+    handleEngineerGrade(setValue),
+    handleEngineerLn(setValue)
   );
 
+  // Обработчик для ручного ввода в поле input
   const handleChange = (e) => {
-    setValue(e.target.value);
+    const inputValue = e.target.value;
+    // Замена нескольких операторов на один
+    const sanitizedValue = inputValue.replace(/([+\-*/^.]){2,}/g, "$1");
+    setValue(sanitizedValue);
   };
 
   return (
@@ -39,7 +59,12 @@ function App() {
       <div className="calculator">
         <form action="">
           <div className="display">
-            <input type="text" value={value} onChange={handleChange} />
+            <input
+              type="text"
+              value={value}
+              onChange={handleChange}
+              style={{ fontSize: calculateFontSize() }}
+            />
           </div>
           {buttons.map((group, groupIndex) => (
             <div key={groupIndex}>

@@ -1,5 +1,6 @@
 const createButton = (label, onClick) => ({ label, onClick });
 
+// Функция для создания групп кнопок основного режима
 export const buttonGroups = (
   handleSet,
   handleDelete,
@@ -40,9 +41,11 @@ export const buttonGroups = (
   ],
 ];
 
+// Функция для создания групп кнопок инженерного режима
 export const createEngineerButtonGroups = (
   handleEngineerSet,
-  handleEngineerGrade
+  handleEngineerGrade,
+  handleEngineerLn
 ) => [
   [
     createButton("sin", handleEngineerSet),
@@ -51,8 +54,8 @@ export const createEngineerButtonGroups = (
     createButton("sqrt", handleEngineerSet),
   ],
   [
-    createButton("log", handleEngineerSet),
-    createButton("ln", handleEngineerSet),
+    createButton("π", handleEngineerSet),
+    createButton("ln", handleEngineerLn),
     createButton("exp", handleEngineerSet),
     createButton("^", handleEngineerGrade),
   ],

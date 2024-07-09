@@ -18,7 +18,8 @@ form input {
   outline: 0;
   width: 60px;
   height: 60px;
-  font-size: 20px;
+  font-size: 22px;
+  line-height: 0;
   background-color: rgb(91, 91, 151);
   margin: 2px;
   border-radius: 10px;
@@ -39,7 +40,6 @@ form .display {
 form .display input {
   text-align: right;
   flex: 1;
-  font-size: 40px;
   padding: 5px 10px;
   background-color: rgb(58, 57, 57);
 }
@@ -59,4 +59,8 @@ form .display input {
   animation: slideIn 0.3s ease-in-out forwards;
   opacity: 0;
   transform: translateY(-50%);
+}
+
+.del-btn {
+  background-color: red !important;
 }
