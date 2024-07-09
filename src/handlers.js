@@ -20,3 +20,17 @@ export const handleEvaluate = (setValue, value) => () => {
     setValue("Error");
   }
 };
+
+export const toggleEngineerMode = (setIsEngineerMode) => () => {
+  setIsEngineerMode((prevMode) => !prevMode);
+};
+
+export const handleEngineerButtonClick = (setValue) => (e) => {
+  const func = e.target.value;
+  setValue((prevValue) => `${func}(${prevValue})`);
+};
+
+export const handleEngineerGrade = (setValue) => (e) => {
+  const func = e.target.value;
+  setValue((prevValue) => `${prevValue}${func}`);
+};
